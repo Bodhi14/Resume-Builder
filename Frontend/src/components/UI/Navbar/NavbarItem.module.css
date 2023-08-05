@@ -10,7 +10,7 @@
 }
 
 .link:hover {
-    box-shadow: inset 130px 0 0 0 black;
+    box-shadow: inset 190px 0 0 0 black;
     color: #f8d16e;
     border-radius: 30px;
 }
