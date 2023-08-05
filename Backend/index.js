@@ -27,7 +27,7 @@ app.use(passport.session());
 
 
 app.use(cors({
-    origin: 'https://resume-builder-frontend-theta.vercel.app/',
+    origin: 'https://resume-builder-frontend-theta.vercel.app',
     methods: 'GET,PUT,POST,DELETE',
     credentials: true
 }));
