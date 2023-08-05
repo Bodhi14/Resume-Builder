@@ -20,7 +20,7 @@ router.post('/', async (req, res) => {
         date: date
     };
     if (!id) {
-      const offerLetter = await OfferLetter.create(obj); 
+      const offerLetter = await OfferLetter.create(obj);
       if (offerLetter) {
         console.log(`Data posted with mongoose id = ${offerLetter._id}`);
       }
