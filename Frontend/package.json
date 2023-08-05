@@ -1,7 +1,8 @@
 {
-  "name": "templates-for-genletter",
+  "name": "resume-builder",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://resume-builder-backend-pi.vercel.app/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

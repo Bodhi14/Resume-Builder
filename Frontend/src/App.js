@@ -63,7 +63,7 @@ function App(props) {
   return (
     
     <BrowserRouter>
-      {window.location.href !== "http://localhost:3000/login" && (
+      {window.location.href !== "https://resume-builder-frontend-theta.vercel.app/login" && (
         <Navbar user={user} />
       )}
       <Routes>
