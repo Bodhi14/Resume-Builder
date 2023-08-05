@@ -6,7 +6,7 @@ const Home = (props) => {
         <div>
             <div className={`${classes.group}`}>
                 <div className={`${classes.text}`}>
-                    <div className={`${classes.welcome_content}`}>Welcome to the Genletter</div>
+                    <div className={`${classes.welcome_content}`}>Welcome to Resume-Builder</div>
                     <div className={`${classes.welcome_heading}`}>Turn raw data into a formal document</div>
                     <div className={`${classes.welcome_description}`}>Offer letters, application letters, resumes and much more!</div>
                     <Button content='GET STARTED' />

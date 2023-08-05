@@ -13,7 +13,7 @@ const Navbar = (props) => {
         <div className={`${classes.list}`}>
             <div className={`${classes.left}`}>
                 <img src={logo} alt='logo' className={`${classes.logo}`} />
-                <NavbarItem item='Genletter' link='/' />
+                <NavbarItem item='Resume-Builder' link='/' />
             </div>
             <div className={`${classes.right}`}>
                 <NavbarItem item='Home' link='/' />
