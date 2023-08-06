@@ -48,7 +48,6 @@ function App(props) {
         });
 
       setUser(data.user._json);
-      // console.log(user);
     } catch (err) {
       console.log(err);
     }
@@ -63,7 +62,7 @@ function App(props) {
   return (
     
     <BrowserRouter>
-      {window.location.href !== "https://resume-builder-frontend-theta.vercel.app/login" && (
+      {window.location.href !== "/login" && (
         <Navbar user={user} />
       )}
       <Routes>
@@ -133,8 +132,7 @@ function App(props) {
         />
       </Routes>
     </BrowserRouter>
-    
   );
 }
 
-export default App;
+export default App; 

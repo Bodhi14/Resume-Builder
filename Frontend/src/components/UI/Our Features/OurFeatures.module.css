@@ -21,3 +21,31 @@
     margin: 50px 0;
     justify-content: space-around;
 }
+
+@media screen and (max-width: 480px) {
+    .heading {
+        display: none;
+    }
+    .subheading {
+        padding-top: 100px;
+    }
+   
+    .cards {
+        padding-top: 40px;
+        font-size: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .subheading {
+        padding-top: 250px;
+    }
+   
+}
+
+@media screen and (max-width: 340px) {
+    .subheading {
+        padding-top: 300px;
+    }
+   
+}

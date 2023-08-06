@@ -17,7 +17,7 @@ connectDB();
 app.use(
     cookieSession({
         name: 'session',
-        keys: ['genletter'],
+        keys: ['resume-builder'],
         maxAge: 24 * 60 * 60 * 1000
     })
 );
@@ -27,7 +27,7 @@ app.use(passport.session());
 
 
 app.use(cors({
-    origin: 'https://resume-builder-frontend-theta.vercel.app',
+    origin: 'http://localhost:3000',
     methods: 'GET,PUT,POST,DELETE',
     credentials: true
 }));
@@ -39,7 +39,6 @@ app.use('/auth', authRoute);
 app.use('/resume', resumeRoute);
 app.use('/offer_letter', offerLetterRoute);
 app.use('/edit', getRoutes);
-
 app.listen(port, () => {
     console.log(`server started on port ${port}!`);
 })

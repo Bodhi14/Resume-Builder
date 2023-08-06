@@ -4,7 +4,7 @@
 }
 
 .text {
-    padding-top: 225px;
+    padding-top: 150px;
     vertical-align: middle;
 }
 
@@ -24,4 +24,10 @@
 .welcome_description {
     color: #FAF8F1;
     font-size: 1.2rem;
+}
+
+@media screen and (max-width:600px) {
+    .text {
+        padding-top: 125px;
+    }
 }

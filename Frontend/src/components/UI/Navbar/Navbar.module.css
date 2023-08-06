@@ -10,6 +10,10 @@
     right: 0;
     vertical-align: middle;
 }
+.laptop {
+    display: block;
+}
+
 
 .navbar {
     background-color: black;
@@ -28,4 +32,17 @@
     height: 2%;
     width: 2%;
     vertical-align: middle;
+}
+
+.mobile {
+    display: none;
+}
+
+@media screen and (max-width:600px) {
+    .laptop {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
 }
