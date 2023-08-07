@@ -30,4 +30,7 @@
     .text {
         padding-top: 125px;
     }
+    .group {
+        padding-left: 30px;
+    }
 }
