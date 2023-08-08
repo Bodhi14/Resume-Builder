@@ -27,7 +27,7 @@ app.use(passport.session());
 
 
 app.use(cors({
-    origin: 'https://resume-builder-frontend-theta.vercel.app',
+    origin: ['https://cv-offer-letter-builder.vercel.app', 'https://resume-builder-frontend-theta.vercel.app', 'http://localhost:3000'],
     methods: 'GET,PUT,POST,DELETE',
     credentials: true
 }));
@@ -39,6 +39,6 @@ app.use('/auth', authRoute);
 app.use('/resume', resumeRoute);
 app.use('/offer_letter', offerLetterRoute);
 app.use('/edit', getRoutes);
-app.listen(port, () => {
+app.listen(port, () => { 
     console.log(`server started on port ${port}!`);
 })
