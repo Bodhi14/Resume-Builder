@@ -1,12 +1,13 @@
-import React,{useEffect} from 'react';
+import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import axios from 'axios';
 
 const Profile = (props) => {
-
+    const [user] = useState(JSON.parse(localStorage.getItem("userdata")));
+    console.log(props)
     const updateItems = async() =>{
-         await axios.get('/resume/history/')
+         await axios.get(`/resume/history/${user.email}`)
         .then((response) => {
           props.setResume(response.data);
           console.log('data received!');
@@ -15,7 +16,7 @@ const Profile = (props) => {
           alert('error!');
         });
 
-      await axios.get('/offer_letter/history/')
+      await axios.get(`/offer_letter/history/${user.email}`)
         .then((response) => {
           props.setOfferLetter(response.data);
           console.log('data received!');

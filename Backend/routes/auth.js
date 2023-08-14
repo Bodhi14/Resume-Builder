@@ -1,43 +1,52 @@
 const router = require("express").Router();
-const passport = require("passport");
-const passportEmail = require('../passport');
+const User = require('../models/userSchema');
 require('dotenv').config();
 
-router.get("/login/success", async (req, res) => {
-    // const email = await passportEmail.getUserProfile();
-    // console.log(email);
-    if (req.user) {
-        res.status(200).json({
-            error: false,
-            message: "Successfully Logged In",
-            user: req.user,
-        });
-        // console.log(req.user.emails[1]);
-    } else {
-        res.status(403).json({ error: true, message: "Not Authorized" });
+
+
+router.post('/login',(req,res)=>{
+    let {email}=req.body;
+    User.findOne({ email: email })
+          .then((user) => {
+            if (!user) {
+              User.create({
+                email: email,
+              })
+                .then(() =>
+                  console.log(`${profile.displayName}'s account has been created`)
+                )
+                .catch((err) => {
+                  consonle.log(
+                    `error (while creating user): ${JSON.stringify(err)}`
+                  );
+                });
+            }
+            res.status(200).send("User logged in successfully")
+          })
+          .catch((err) =>{
+            console.log(
+              `Error occured while looking for user: ${JSON.stringify(err)}`
+            )
+            res.status(500).send("Something went wrong")
+          }
+          );
+      
+  })
+  
+  router.post('/',async(req,res)=>{
+    try {
+      const {email}=req.body;
+      let user=await User.findOne({email});
+      if(!user) {
+        user=new User({email});
+        await user.save();
+      }
+      res.status(200).send(user);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({error:JSON.stringify(error)});
     }
-});
-
-router.get("/login/failed", (req, res) => {
-    res.status(401).json({
-        error: true,
-        message: "Log in failure",
-    });
-});
-
-router.get("/google", passport.authenticate("google", ["profile", "email"]));
-
-router.get(
-    "/google/callback",
-    passport.authenticate("google", {
-        successRedirect: process.env.CLIENT_URL,
-        failureRedirect: "/login/failed",
-    })
-);
-
-router.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect(process.env.CLIENT_URL);
-});
+  })
+  
 
 module.exports = router;

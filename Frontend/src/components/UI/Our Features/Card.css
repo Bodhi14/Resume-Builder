@@ -1,6 +1,6 @@
 .card {
   background-color: transparent;
-  width: 33%;
+  width: 45%;
   height: 254px;
   perspective: 1000px;
   font-family: sans-serif;
@@ -42,6 +42,11 @@
   border-radius: 1rem;
 }
 
+.btn-style {
+  position: relative;
+  justify-self: center;
+}
+
 .card-front {
   background: #e5ca83;
   color: black;
@@ -53,4 +58,16 @@
   background: #968570;
   color: black;
   transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .card {
+    width: 110%;
+  }
 }

@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NavbarItem from './NavbarItem';
 import classes from './Navbar.module.css';
 import './navStyles.css';
 import logo from '../../../assets/Icon-notepad.png';
+import logFunc from '../Login/LoginLogoutFunc';
 
 const Navbar = (props) => {
 
         
+    const { login, logout } = logFunc();
+
+    function logoutHandler() {
+      logout()
+    }
+    
     const [isIconOpen, setIsIconOpen] = useState(false);
 
     const handleButtonClick = () => {
@@ -14,9 +21,7 @@ const Navbar = (props) => {
     }
     
 
-    const logout = () => {
-        window.open(`http://localhost:5000/auth/logout`, "_self");
-    }
+    
 
     return (
         <>
@@ -29,7 +34,7 @@ const Navbar = (props) => {
             <div className={`${classes.right}`}>
                 <NavbarItem item='Home' link='/' />
                 <NavbarItem item='Profile' link='/profile' />
-                {props.user ? <NavbarItem item='Logout' onLogout={logout} /> : <NavbarItem item='Login' link='/login' />}
+                {props.user ? <NavbarItem item='Logout' onLogout={logoutHandler} /> : <NavbarItem item='Login' link='/login' />}
             </div>
         </div>
         </div>
@@ -62,7 +67,7 @@ const Navbar = (props) => {
             
             <div className="bg-dark shadow-3 p-4 d-flex justify-content-center">
             {props.user ? 
-            <NavbarItem item='Logout' onLogout={logout}/> 
+            <NavbarItem item='Logout' onLogout={logoutHandler}/> 
             : <NavbarItem item='Login' link='/login'/>
             }
             </div>

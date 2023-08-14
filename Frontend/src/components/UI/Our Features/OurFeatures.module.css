@@ -18,11 +18,13 @@
 
 .cards {
     display: flex;
-    margin: 50px 0;
+    
+    margin-left: 5%;
+    
     justify-content: space-around;
 }
 
-@media screen and (max-width: 480px) {
+  @media screen and (max-width: 480px) {
     .heading {
         display: none;
     }
@@ -30,22 +32,79 @@
         padding-top: 100px;
     }
    
+}
+
+
+@media screen and (max-width: 768px) {
     .cards {
-        padding-top: 40px;
-        font-size: 0.6rem;
+        display: block;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .cards {
+        margin-left: 3%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .cards {
+        margin-left: -2%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cards {
+        margin-left: -25%;
+        
+    }
+}
+/* @media screen and (max-width: 768px) {
+    .heading {
+        display: none;
+    }
+} */
+/*
 
 @media screen and (max-width: 380px) {
     .subheading {
         padding-top: 250px;
     }
-   
 }
 
 @media screen and (max-width: 340px) {
     .subheading {
         padding-top: 300px;
     }
-   
-}
+}  
+
+/* @media screen and (max-width: 600px) {
+    .cards {
+        display: block; 
+        text-align: center;
+    }
+
+    .cards > * {
+        margin: 10px 0; 
+    }
+
+    .heading {
+        display: none; 
+    }
+
+    .subheading {
+        padding-top: 100px; 
+    }
+} */
+
+
+/* @media screen and (max-width: 600px) {
+    .cards {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}  */
+
+
+

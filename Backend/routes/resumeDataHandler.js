@@ -1,46 +1,40 @@
 const express = require('express');
 const { default: mongoose } = require('mongoose');
 const router = express.Router();
-const Resume = require('../models/resumeSchema');
-const passport = require('../passport');
+const OfferLetter = require('../models/offerLetterSchema');
 
 router.post('/', async (req, res) => {
-    const loggedIn = await passport.getUserEmail();
-    console.log(loggedIn);
-    const { id, fname, lname, rollNo, links, email, phoneNo, education, workex, projects, achievements, skills, por, date } = req.body;
+    // console.log(req.body);
+    const loggedIn = req.body.email;
+    // console.log(loggedIn);
+    const { id, candidateDetails, companyDetails, jobDetails, deadline, personalDetails, dateToday, date } = req.body;
     const obj = {
         loggedIn: loggedIn,
-        fname: fname,
-        lname: lname,
-        phoneNo: phoneNo,
-        email: email,
-        rollNo: rollNo,
-        links: links,
-        education: education,
-        workex: workex,
-        projects: projects,
-        achievements: achievements,
-        skills: skills,
-        por: por,
+        candidateDetails: candidateDetails,
+        companyDetails: companyDetails,
+        jobDetails: jobDetails,
+        deadline: deadline,
+        personalDetails: personalDetails,
+        dateToday: dateToday,
         date: date
     };
     if (!id) {
-        const resume = await Resume.create(obj);
-        if (resume) {
-            console.log(`Data posted with mongoose id = ${resume._id}`);
-        }
+      const offerLetter = await OfferLetter.create(obj); //  new OfferLetter(obj);
+      if (offerLetter) {
+        console.log(`Data posted with mongoose id = ${offerLetter._id}`);
+      }
     }
     else {
-        const resume = await Resume.updateOne({ _id: mongoose.Types.ObjectId(id) }, obj);
-        if (resume) {
-            console.log(`Resume updated with mongoose id = ${id}`);
+        const offerLetter = await OfferLetter.updateOne({ _id: mongoose.Types.ObjectId(id) }, obj);
+        if (offerLetter) {
+            console.log(`Offer Letter updated with mongoose id = ${id}`);
         }
     }
 });
 
-router.get('/history', async (req, res) => {
-    const loggedIn = await passport.getUserEmail();
-    await Resume.find({ loggedIn: loggedIn }).then((data) => {
+router.get('/history/:email', async (req, res) => {
+    const loggedIn = req.params.email;
+    await OfferLetter.find({ loggedIn: loggedIn }).then((data) => {
         res.json(data);
     })
         .catch((error) => {

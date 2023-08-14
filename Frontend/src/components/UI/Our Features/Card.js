@@ -12,7 +12,7 @@ const Card = (props) => {
                 </div>
                 <div className='card-back'>
                     <Link to={props.link}>
-                    <Button content='PROCEED' ask={props.ask}/>
+                    <Button className="btn-style" content='PROCEED' ask={props.ask}/>
                     </Link>
                 </div>
             </div>

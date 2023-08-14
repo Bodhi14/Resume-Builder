@@ -19,17 +19,23 @@ import { useSelector} from 'react-redux';
 
 function App(props) {
   const state = useSelector((state)=>state);
-  const [user, setUser] = useState(null);
+  const [user] = useState(JSON.parse(localStorage.getItem("userdata")));
   const [resume, setResume] = useState(null);
   const [offerLetter, setOfferLetter] = useState(null);
 
   const getUser = async () => {
     try {
-      const url = `http://localhost:5000/auth/login/success`;
-      const { data } = await axios.get(url, { withCredentials: true });
-      console.log(data);
-   
-      await axios.get('/resume/history/')
+
+      await axios.get(`/offer_letter/history/${user.email}`)
+      .then((response) => {
+        setOfferLetter(response.data);
+        console.log('data received!');
+      })
+      .catch((err) => {
+        alert('error!');
+      });
+
+      await axios.get(`/resume/history/${user.email}`)
         .then((response) => {
           setResume(response.data);
           console.log('data received!');
@@ -38,16 +44,10 @@ function App(props) {
           alert('error!');
         });
 
-      await axios.get('/offer_letter/history/')
-        .then((response) => {
-          setOfferLetter(response.data);
-          console.log('data received!');
-        })
-        .catch((err) => {
-          alert('error!');
-        });
+     
 
-      setUser(data.user._json);
+      // setUser(data.user._json);
+      // console.log(user);
     } catch (err) {
       console.log(err);
     }

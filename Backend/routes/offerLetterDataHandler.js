@@ -2,11 +2,10 @@ const express = require('express');
 const { default: mongoose } = require('mongoose');
 const router = express.Router();
 const OfferLetter = require('../models/offerLetterSchema');
-const passport = require('../passport');
 
 router.post('/', async (req, res) => {
     // console.log(req.body);
-    const loggedIn = await passport.getUserEmail();
+    const loggedIn = req.body.email;
     // console.log(loggedIn);
     const { id, candidateDetails, companyDetails, jobDetails, deadline, personalDetails, dateToday, date } = req.body;
     const obj = {
@@ -20,7 +19,7 @@ router.post('/', async (req, res) => {
         date: date
     };
     if (!id) {
-      const offerLetter = await OfferLetter.create(obj);
+      const offerLetter = await OfferLetter.create(obj); //  new OfferLetter(obj);
       if (offerLetter) {
         console.log(`Data posted with mongoose id = ${offerLetter._id}`);
       }
@@ -33,8 +32,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/history', async (req, res) => {
-    const loggedIn = await passport.getUserEmail();
+router.get('/history/:email', async (req, res) => {
+    const loggedIn = req.params.email;
     await OfferLetter.find({ loggedIn: loggedIn }).then((data) => {
         res.json(data);
     })
