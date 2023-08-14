@@ -25,8 +25,8 @@ function App(props) {
 
   const getUser = async () => {
     try {
-
-      await axios.get(`/offer_letter/history/${user.email}`)
+      if(user) {
+      await axios.get(`https://resume-builder-backend-pi.vercel.app/offer_letter/history/${user.email}`)
       .then((response) => {
         setOfferLetter(response.data);
         console.log('data received!');
@@ -35,7 +35,7 @@ function App(props) {
         alert('error!');
       });
 
-      await axios.get(`/resume/history/${user.email}`)
+      await axios.get(`https://resume-builder-backend-pi.vercel.app/resume/history/${user.email}`)
         .then((response) => {
           setResume(response.data);
           console.log('data received!');
@@ -46,8 +46,7 @@ function App(props) {
 
      
 
-      // setUser(data.user._json);
-      // console.log(user);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -55,7 +54,7 @@ function App(props) {
 
   useEffect(() => {
     getUser();
-  }, []);
+  }, [user]);
 
 
 

@@ -12,7 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Resume() {
-
+    const [user] = useState(JSON.parse(localStorage.getItem("userdata")));
     const { id } = useParams();
     // console.log(id);
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ function Resume() {
 
     useEffect(() => {
         if (id) {
-            axios.get(`http://localhost:5000/edit/resume/${id}`)
+            axios.get(`https://resume-builder-backend-pi.vercel.app/edit/resume/${id}`)
                 .then((response) => {
                     console.log(response.data);
                     setRefs(response.data);
@@ -326,12 +326,12 @@ function Resume() {
         });
         navigate('/resume/templates', { state: refs });
 
-        await fetch("http://localhost:5000/resume", {
+        await fetch("/resume", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: id, ...obj }),
+            body: JSON.stringify({ mail:user.email,id: id, ...obj }),
         })
             .catch(error => {
                // window.alert(error);

@@ -10,7 +10,7 @@ import JobDetails from './JobDetails';
 import PersonalDetails from './PersonalDetails';
 
 const OfferLetter = () => {
-
+  const [user] = useState(JSON.parse(localStorage.getItem("userdata")));
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const OfferLetter = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`/edit/offer_letter/${id}`)
+      axios.get(`https://resume-builder-backend-pi.vercel.app/edit/offer_letter/${id}`)
         .then((response) => {
           console.log(response.data);
           setRefs(response.data);
@@ -205,7 +205,7 @@ const OfferLetter = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id: id, ...obj }),
+      body: JSON.stringify({ email:user.email,id: id, ...obj }),
     })
       .catch(error => {
         window.alert(error);
