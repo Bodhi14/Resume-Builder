@@ -20,13 +20,12 @@ const LoginLogoutFunctions = () => {
         const userData = data && data.email ? data : res.data;
         localStorage.setItem('userdata', JSON.stringify(userData));
 
-        // Optional: redirect to verification page if needed
-        // if (!userData.verified) {
-        //   localStorage.setItem('redirectUrl', window.location.href);
-        //   navigate('/verify');
-        // } else {
-        //   window.location.reload();
-        // }
+        if (!userData.verified) {
+          localStorage.setItem('redirectUrl', window.location.href);
+          navigate('/verify');
+        } else {
+          window.location.reload();
+        }
 
         window.location.reload();
       } catch (error) {
