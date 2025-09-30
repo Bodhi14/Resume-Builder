@@ -11,8 +11,6 @@ const port = 5000 || process.env.PORT;
 const connectDB = require('./config/db');
 connectDB();
 
-
-
 app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
