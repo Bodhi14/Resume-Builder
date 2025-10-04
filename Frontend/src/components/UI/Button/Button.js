@@ -8,9 +8,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button'; // MUI Button
+import { Button as MUIButton } from '@mui/material';
 
-export const Button = (props) => {
+export const CustomButton = (props) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
@@ -52,12 +52,12 @@ export const Button = (props) => {
             </DialogContent>
 
             <DialogActions>
-              <Button onClick={handleYes} variant="contained" color="primary">
+              <MUIButton onClick={handleYes} variant="contained" color="primary">
                 Yes
-              </Button>
-              <Button onClick={handleNo} variant="outlined" color="secondary">
+              </MUIButton>
+              <MUIButton onClick={handleNo} variant="outlined" color="secondary">
                 No
-              </Button>
+              </MUIButton>
             </DialogActions>
           </Dialog>
         </>
