@@ -3,13 +3,14 @@ const uri = process.env.MONGO_URI;
 
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 
-async function run() {
+const connectDB = async () => {
   try {
     await mongoose.connect(uri, clientOptions);
-    await mongoose.connection.db.admin().command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    await mongoose.disconnect();
+    console.log("Connected to MongoDB successfully!");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
   }
-}
-run().catch(console.dir);
+};
+
+module.exports = connectDB;
